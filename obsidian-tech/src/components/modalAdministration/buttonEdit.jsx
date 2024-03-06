@@ -8,7 +8,6 @@ const ButtonEdit = ({ id, updatedData, handleClose }) => {
     try {
       await UpdateProducto(id, updatedData);
       // Producto actualizado exitosamente, puedes manejar cualquier lógica adicional aquí
-      console.log('Producto actualizado correctamente:', updatedData);
       handleClose(); // Cierra el modal después de editar el producto
     } catch (error) {
       // Manejar errores al actualizar el producto

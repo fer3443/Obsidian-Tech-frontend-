@@ -90,13 +90,7 @@ export const PurchaseOrder = () => {
     }
     return true;
   }
-  // function handleChange(e) {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // }
+  
   function handleRemoveProduct(productId) {
     DeleteCarProduct({
       id: userInfo.user.id,

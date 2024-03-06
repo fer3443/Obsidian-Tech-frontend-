@@ -3,25 +3,26 @@ import { GetAllPedidos, UpdatePedido } from "../../services/user_service";
 import Accordion from "react-bootstrap/Accordion";
 import { Notification } from "../../services/tostifyNot";
 import "../purchaseList/PurchaseList.css";
+import { useHandleChange } from "../../hooks/useHandleChange";
 export const PurchaseList = () => {
   const [actualizar, setActualizar] = useState(false);
-  const [data, setData] = useState([]);
+  const [order, setOrder] = useState([]);
   const [selectedId, setSelectedId] = useState();
   const [correo, setCorreo] = useState();
-  const [status, setStatus] = useState({
+  const {data, setData, handleChange} = useHandleChange({
     pedidoId: null,
     mail: "",
     estado: "",
     virtual_delete: false,
-  });
+  })
   useEffect(() => {
     GetAllPedidos()
       .then(({ pedidos }) => {
-        setData(pedidos);
+        setOrder(pedidos);
         setActualizar(false);
       })
       .catch((err) => console.log(err));
-    setStatus((prevStatus) => ({
+    setData((prevStatus) => ({
       ...prevStatus,
       pedidoId: selectedId,
     }));
@@ -30,27 +31,21 @@ export const PurchaseList = () => {
   const handleSelectedId = (idPedido, mail) => {
     setSelectedId(idPedido), setCorreo(mail);
   };
-  const handleStatus = (e) => {
-    const { name, value } = e.target;
-    setStatus({
-      ...status,
-      [name]: value,
-    });
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(status.estado === ""){
+    if(data.estado === ""){
       Notification({message: 'Debe cambiar el estado de su pedido a realizado para eliminar', type: 'error'})
     }else{
       UpdatePedido({
-        pedidoId: status.pedidoId,
-        virtualDelete: status.virtual_delete,
-        nuevoEstado: status.estado,
+        pedidoId: data.pedidoId,
+        virtualDelete: data.virtual_delete,
+        nuevoEstado: data.estado,
         mail: correo,
       })
         .then((res) => {
           Notification({message: 'Estado de pedido actualizado con exito', type:  'success'});
-          setStatus({
+          setData({
             pedidoId: null,
             mail: '',
             estado: '',
@@ -102,7 +97,7 @@ export const PurchaseList = () => {
                 id="status"
                 onChange={(e) => {
                   handleSelectedId(_id, mail);
-                  handleStatus(e);
+                  handleChange(e);
                 }}
               >
                 <option value=''>Seleccionar</option>
@@ -116,7 +111,7 @@ export const PurchaseList = () => {
               <select
                 name="virtual_delete"
                 id="delete-purchase"
-                onChange={handleStatus}
+                onChange={handleChange}
               >
                 <option>-</option>
                 <option value={false}>No</option>
@@ -143,7 +138,7 @@ export const PurchaseList = () => {
           <div className="container-acordeon">
             <h5>Pedidos sin realizar</h5>
             <Accordion>
-              {data
+              {order
                 .filter(function (item) {
                   return (
                     item.estado === "sin realizar" &&
@@ -156,7 +151,7 @@ export const PurchaseList = () => {
           <div className="container-acordeon">
             <h5>Pedidos en preparacion</h5>
             <Accordion>
-              {data
+              {order
                 .filter(function (item) {
                   return (
                     item.estado === "preparando" &&
@@ -169,7 +164,7 @@ export const PurchaseList = () => {
           <div className="container-acordeon">
             <h5>Pedidos Realizados</h5>
             <Accordion>
-              {data
+              {order
                 .filter(function (item) {
                   return (
                     item.estado === "realizado" &&

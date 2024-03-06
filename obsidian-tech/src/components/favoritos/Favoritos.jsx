@@ -31,11 +31,9 @@ const Favoritos = () => {
       .then(({ favorite_producs }) => {
         setFav(favorite_producs);
         setLoading(false);
+        setProducto(false);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        setProducto(false);
-      });
   }, [producto]);
   const favoritos = fav.length > 0;
   return (

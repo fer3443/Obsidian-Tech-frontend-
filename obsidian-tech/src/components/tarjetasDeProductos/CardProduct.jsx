@@ -10,10 +10,9 @@ import { Pagination } from "swiper";
 import { Navigation } from "swiper";
 
 import { getAllProductsFromDB } from "../../services/product_service";
-
+import {useGetProducts} from '../../hooks/useGetProducts'
 import { useHandleAddFavorite } from "../../hooks/useHandleAddFavorite";
 import { useHandleAddCar } from "../../hooks/useHandleAddCar";
-
 import "../tarjetasDeProductos/CardProduct.css";
 
 import "swiper/css";
@@ -25,17 +24,9 @@ export const CardProduct = () => {
   const handleAddFavorites = useHandleAddFavorite();
   //custom hook para agregar carrito
   const handleAddCar = useHandleAddCar();
-  const [dataApi, setDataApi] = useState([]); //trae los productos
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(true)
-    getAllProductsFromDB()
-      .then(({ data }) => {
-        setDataApi(data),
-        setLoading(false)
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  //CH para menejo de grilla de productos
+  const { loading, products} = useGetProducts()
+
   return (
     <>
       <div className="swiperContainer">
@@ -84,7 +75,7 @@ export const CardProduct = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper"
           >
-            {dataApi.map((item, index) => {
+            {products.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
                   <div className="cardBorder">

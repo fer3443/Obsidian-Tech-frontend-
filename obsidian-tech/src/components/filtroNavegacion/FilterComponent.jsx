@@ -5,16 +5,15 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../filtroNavegacion/FilterComponent.css";
 import { ContainerResults } from "../ventanadaResultados/ContainerResults";
 import { getAllProductsFromDB } from "../../services/product_service";
+import { useGetProducts } from "../../hooks/useGetProducts";
 
 const FilterComponent = ({ setClicked }) => {
-  const [dataApi, setDataApi] = useState([]);
+  const {products} = useGetProducts()
   const [filtered, setFiltered] = useState("");
   const [resultado, setResultado] = useState([]);
-  //para mostrar ventana de resultados
-  // const [ show, setShow] = useState(false);
 
   const filtrado = (valorDelInput) => {
-    const resultadoBusqueda = dataApi.filter((item) => {
+    const resultadoBusqueda = products.filter((item) => {
       if (item.nombre.toLowerCase().includes(valorDelInput.toLowerCase())) {
         return item;
       }
@@ -28,15 +27,6 @@ const FilterComponent = ({ setClicked }) => {
     setFiltered(inputValue);
     filtrado(inputValue);
   };
-
-  useEffect(() => {
-    getAllProductsFromDB()
-      .then(({ data }) => {
-        setDataApi(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   return (
     <>
      <section className="sectionFilter">
