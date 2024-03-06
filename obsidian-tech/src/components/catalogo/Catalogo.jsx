@@ -20,6 +20,7 @@ export const Catalogo = () => {
       [name]: value,
     });
   };
+
   return (
     <>
       <header className="header-catalogo">

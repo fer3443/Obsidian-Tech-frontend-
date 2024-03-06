@@ -36,7 +36,6 @@ export const CardProduct = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-
   return (
     <>
       <div className="swiperContainer">
