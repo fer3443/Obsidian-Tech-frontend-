@@ -9,6 +9,7 @@ import { Notification } from "../../services/tostifyNot";
 
 import { ModalPurchase } from "../modalPurchaseConfirm/ModalPurchase.jsx";
 import "../purchaseOrder/PurchaseOrder.css";
+import { useHandleChange } from "../../hooks/useHandleChange.jsx";
 export const PurchaseOrder = () => {
   const { userInfo,producto ,setProducto } = useContext(DataProvider);
   //estado para manejar Loader
@@ -21,8 +22,8 @@ export const PurchaseOrder = () => {
   //estado para manejar GetAllCarProduct
   const [product, setProduct] = useState([]);
   const [productBuy, setProductBuy] = useState([]);
-  //estado para manejar handleSubmit
-  const [formData, setFormData] = useState({
+
+  const {data,setData,handleChange} = useHandleChange({
     nombres: "",
     apellidos: "",
     departamento: "-",
@@ -30,8 +31,7 @@ export const PurchaseOrder = () => {
     numero: "",
     provincia: "",
     localidad: "",
-  });
-
+  })
   useEffect(() => {
     GetCarProducts({
       id: userInfo.user.id,
@@ -90,13 +90,13 @@ export const PurchaseOrder = () => {
     }
     return true;
   }
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
+  // function handleChange(e) {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // }
   function handleRemoveProduct(productId) {
     DeleteCarProduct({
       id: userInfo.user.id,
@@ -121,19 +121,19 @@ export const PurchaseOrder = () => {
       products: productBuy,
       token: userInfo.user.token,
       nombre: {
-        nombres: formData.nombres,
-        apellidos: formData.apellidos,
+        nombres: data.nombres,
+        apellidos: data.apellidos,
       },
       direccion: {
-        departamento: formData.departamento,
-        calle: formData.calle,
-        numero: formData.numero,
-        localidad: formData.localidad,
-        provincia: formData.provincia,
+        departamento: data.departamento,
+        calle: data.calle,
+        numero: data.numero,
+        localidad: data.localidad,
+        provincia: data.provincia,
       },
     })
       .then((res) => {
-          setFormData({
+          setData({
             nombres: "",
             apellidos: "",
             departamento: "",
@@ -187,7 +187,7 @@ export const PurchaseOrder = () => {
                       minLength={2}
                       maxLength={40}
                       placeholder="Provincia"
-                      value={formData.provincia}
+                      value={data.provincia}
                       onChange={handleChange}
                     />
                     <input
@@ -197,7 +197,7 @@ export const PurchaseOrder = () => {
                       placeholder="Localidad"
                       minLength={3}
                       maxLength={40}
-                      value={formData.localidad}
+                      value={data.localidad}
                       onChange={handleChange}
                     />
                     <span>Piso/Departamento:</span>
@@ -207,7 +207,7 @@ export const PurchaseOrder = () => {
                       min={2}
                       maxLength={10}
                       placeholder="Ejemplo: 1 A"
-                      value={formData.departamento}
+                      value={data.departamento}
                       onChange={handleChange}
                     />
                   </div>
@@ -219,7 +219,7 @@ export const PurchaseOrder = () => {
                       minLength={3}
                       maxLength={30}
                       placeholder="Calle"
-                      value={formData.calle}
+                      value={data.calle}
                       onChange={handleChange}
                     />
                     <input
@@ -229,7 +229,7 @@ export const PurchaseOrder = () => {
                       minLength={1}
                       maxLength={5}
                       placeholder="Número"
-                      value={formData.numero}
+                      value={data.numero}
                       onChange={handleChange}
                     />
                   </div>
@@ -237,7 +237,7 @@ export const PurchaseOrder = () => {
                     <input
                       type="text"
                       name="nombres"
-                      value={formData.nombres}
+                      value={data.nombres}
                       onChange={handleChange}
                       id=""
                       minLength={2}
@@ -249,7 +249,7 @@ export const PurchaseOrder = () => {
                       name="apellidos"
                       minLength={2}
                       maxLength={40}
-                      value={formData.apellidos}
+                      value={data.apellidos}
                       onChange={handleChange}
                       id=""
                       placeholder="Apellido/s:"
