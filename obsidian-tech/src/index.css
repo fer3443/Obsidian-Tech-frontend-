@@ -2,3 +2,64 @@
 * {
   font-family: 'Outfit', sans-serif;
 }
+:root {
+  /* Colors */
+  --color-text: #fff;
+  --color-prim: #7035C0;
+  --color-sec: #0396FE;
+  /* font size*/
+  --biggest-fs: 2rem;
+  --bigger-fs: 1.25rem;
+  --h1-fs: 1.5rem;
+  --h2-fs: 1.25rem;
+  --h3-fs: 1rem;
+  --normal-fs: 0.938rem;
+  --small-fs: 0.813rem;
+  --smaller-fs: 0.75rem;
+  /* font weight*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--font-medium);
+}
+a{
+  color: var(--color-text);
+}
+a:hover {
+  color: var(--color-text);
+
+}
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.section {
+  padding-block: 5rem 2rem;
+}
+.section-title,
+.section-subtitle {
+  text-align: center;
+  font-weight: var(--font-semibold);
+}
+.section-title {
+  font-size: var(--h1-fs);
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+.section-subtitle {
+  font-size: var(--small-fs);
+  margin-bottom: 0.25rem;
+}
+.btn1 {
+  background: linear-gradient(to right, var(--color-prim), var(--color-sec));
+  border: none;
+  border-radius: 0 15px;
+  text-decoration: none;
+  padding: .6rem;
+}
