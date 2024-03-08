@@ -2,6 +2,7 @@ import { Puerto } from "../config/server_constant";
 
 //             Crear un Usuario
 async function CreateUser({ email, password, urlFoto }) {
+ try {
   const body = JSON.stringify({
     email,
     password,
@@ -14,7 +15,15 @@ async function CreateUser({ email, password, urlFoto }) {
     },
     body: body,
   });
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error('Error en el servidor '+ response.status)
+    throw new Error(errorData.message)
+  }
   return await response.json();
+ } catch (error) {
+  throw error
+ }
 }
 
 //             Iniciar sesión

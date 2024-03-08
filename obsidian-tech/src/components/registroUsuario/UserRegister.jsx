@@ -65,13 +65,10 @@ const UserRegister = () => {
           })
           .catch(error => {
             console.log('Error al crear el usuario:', error);
-            Notification({ message: "Error al crear el usuario", type: "error" });
+            Notification({ message: `${error}`, type: "error" });
           })
           .finally(() =>{
             setSubmitting(false);
-            setTimeout(() => {
-              setRegisterd(false)
-            }, 1000);
           });
         }}
       >
