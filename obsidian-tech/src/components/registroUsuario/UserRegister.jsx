@@ -76,8 +76,8 @@ const UserRegister = () => {
         }}
       >
         {({ isSubmitting, isValid, errors }) => (
-          <div className='containerRegisterGral'>
-            <div className='containerForm'>
+          <section className='section containerRegisterGral'>
+            <div className=' container containerForm'>
               <Form>
                 <div className='boxTitleRegister'>
                   <h4>Registro de usuario.</h4>
@@ -117,7 +117,7 @@ const UserRegister = () => {
                 </button>
               </Form>
             </div>
-          </div>
+          </section>
         )}
       </Formik>)
     }
