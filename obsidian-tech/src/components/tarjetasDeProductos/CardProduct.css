@@ -1,11 +1,12 @@
 .swiperContainer {
     display: flex;
     justify-content: center;
-    background-color: transparent;
-    backdrop-filter: blur(3px);
-    height: 540px;
+    background: radial-gradient(circle, var(--color-sec) 5%,#000 25%);
+    backdrop-filter: blur(24px);
+    min-height: 540px;
+    height: 560px;
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
 }
 .mySwiper {
     height: 100%;

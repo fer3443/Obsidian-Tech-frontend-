@@ -6,10 +6,10 @@ import "../grillaDeProductos/ProductGrid.css";
 export const ProductGrid = () => {
   return (
     <>
-      <div className="gridContainer">
+      <section className="section-grid-product">
         <CardProduct />
+      </section>
         <BestProducts />
-      </div>
     </>
   );
 };
