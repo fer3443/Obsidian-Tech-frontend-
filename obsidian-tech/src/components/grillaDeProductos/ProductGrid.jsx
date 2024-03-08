@@ -8,8 +8,8 @@ export const ProductGrid = () => {
     <>
       <section className="section-grid-product">
         <CardProduct />
-      </section>
         <BestProducts />
+      </section>
     </>
   );
 };

@@ -29,6 +29,7 @@ export const CardProduct = () => {
   return (
     <>
       <article className="swiperContainer">
+        <h2>Best Product</h2>
         {loading ? (
           <span className="loader-catalogo"></span>
         ) : (

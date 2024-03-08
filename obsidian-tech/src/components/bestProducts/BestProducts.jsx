@@ -10,21 +10,18 @@ import "../bestProducts/BestProducts.css";
 
 export const BestProducts = () => {
   return (
-    <div className="bgBProduct">
-      <div className="circleBlue"></div>
-      <section className="bestProduct">
+    <article className="bgBProduct">
+      <div className="bestProduct">
         <div className="bestProductHead">
           <h2 className="bestProductTitle">
             Los mejores productos para juegos profesionales
           </h2>
-          <div className="bestProductSubt">
-            <p>
+          <p>
               Un hardware más potente no solo mejora sus experiencias en los
               juegos que están jugando actualmente, sino que también brinda a
               muchos jugadores acceso a títulos con especificaciones más
               exigentes. En Obsidian - tech lo tenemos!.
             </p>
-          </div>
           <div className="boxBtnBP">
             <Link to={"*"} className="btnBestProduct">
               ver productos <FontAwesomeIcon icon={faGamepad} />
@@ -59,7 +56,7 @@ export const BestProducts = () => {
             title="CPU ITX"
           />
         </div>
-      </section>
-    </div>
+      </div>
+    </article>
   );
 };

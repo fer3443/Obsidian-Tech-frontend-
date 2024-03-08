@@ -38,7 +38,7 @@
   border-radius: 0 15px;
   color: var(--color-text);
   font-size: var(--normal-fs);
-  padding: .4rem .6rem;
+  padding: .4rem 1.5rem;
 }
 .container-register .campo:focus {
   outline: none;
