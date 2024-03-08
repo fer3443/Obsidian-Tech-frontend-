@@ -73,14 +73,14 @@ const UserRegister = () => {
         }}
       >
         {({ isSubmitting, isValid, errors }) => (
-          <section className='section containerRegisterGral'>
-            <div className=' container containerForm'>
-              <Form>
+          <section className='section-register section'>
+            <div className='container-register container grid'>
+             <div className="wrapper">
+             <Form>
                 <div className='boxTitleRegister'>
-                  <h4>Registro de usuario.</h4>
+                  <h3>Registro de usuario.</h3>
                 </div>
-                <div className='boxInput'>
-                  <label htmlFor='email'>Ingrese su email</label>
+                <label htmlFor='email' className='boxInput'>Ingrese su email
                   <Field className='campo' type="email" name="email" />
                   <ErrorMessage 
                     name='email' 
@@ -88,9 +88,8 @@ const UserRegister = () => {
                       <div className='error'>{errors.email}</div>
                     )}
                   />
-                </div>
-                <div className="boxInput">
-                  <label htmlFor="password">Ingrese su contraseña</label>
+                  </label>
+                  <label htmlFor="password" className="boxInput">Ingrese su contraseña
                   <Field className='campo' type="password" name="password" />
                   <ErrorMessage 
                     name='password' 
@@ -98,9 +97,8 @@ const UserRegister = () => {
                       <div className='error'>{errors.password}</div>
                     )} 
                   />
-                </div>
-                <div className="boxInput">
-                  <label htmlFor="repeatPassword">Repita su contraseña</label>
+                  </label>
+                  <label htmlFor="repeatPassword" className="boxInput">Repita su contraseña
                   <Field
                     className='campo'
                     type="password"
@@ -108,11 +106,12 @@ const UserRegister = () => {
                     name="repeatPassword"
                   />
                   <ErrorMessage name="repeatPassword" component="div" />
-                </div>
-                <button className='btnInputReg' type="submit" disabled={isSubmitting || !isValid}>
+                  </label>
+                <button className='btn1 btn-register' type="submit" disabled={isSubmitting || !isValid}>
                   Crear Usuario
                 </button>
               </Form>
+             </div>
             </div>
           </section>
         )}
