@@ -50,10 +50,15 @@ const ProductDetail = () => {
 
   useEffect(() => {
     getProductByIdFromDb(id)
-      .then((res) => {
-        setData(res);
+      .then(({producto}) => {
+        setData(producto);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        Notification({
+          message: `${error}`,
+          type: "error"
+        })
+      })
       .finally(() => {
         setProducto(false);
       });

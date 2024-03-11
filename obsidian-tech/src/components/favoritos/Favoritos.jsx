@@ -41,8 +41,8 @@ const Favoritos = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="containerGral">
-          <div className="containerFav">
+        <section className="section-favorite section">
+          <div className="container-favorite grid">
             <div className="ventanaFav">
               <div className="boxTitleFav">
                 <Link to={"/"} className="linkBack">
@@ -50,7 +50,7 @@ const Favoritos = () => {
                   Inicio
                 </Link>
                 <h2>Lista de Favoritos</h2>
-                <p>
+                <p className="paragraph">
                   Aquí podras ver todos los productos que hayas seleccionado,
                   así como también quitarlos si encuentras uno mejor!.
                 </p>
@@ -76,7 +76,7 @@ const Favoritos = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );

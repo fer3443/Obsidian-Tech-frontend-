@@ -1,37 +1,63 @@
 import { Puerto } from "../config/server_constant"; 
 //         Muestra todos los productos
 async function getAllProductsFromDB() {
-  const response = await fetch(`${ Puerto.URL_LOCAL }/accesorio`)
+ try {
+  const response = await fetch(`${ Puerto.URL_LOCAL }/accesorio`);
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error status ${response.status}`)
+    throw new Error(`${errorData.message}`)
+  }
   return await response.json()
+ } catch (error) {
+  return error
+ }
 }
 
 //         Muestra un producto por su id
 async function getProductByIdFromDb(id) {
-  const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`)
-  return await response.json();
+  try {
+    const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`)
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error(`Error status ${response.status}`)
+      throw new Error(`${errorData.message}`)
+    }
+    return await response.json();
+  } catch (error) {
+    return error
+  }
 }
 
 //         Crear un producto nuevo
 async function AddProductos({ nombre, categoria, precio, stock, Descripcion, urlImg, token }) {
-
-  const body = JSON.stringify({
-    nombre,
-    categoria,
-    precio,
-    stock,
-    Descripcion,
-    urlImg  
-  });
-
-  const response = await fetch(`${Puerto.URL_LOCAL}/accesorio`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-  body: body,
-  });
-  return response.json();
+  try {
+    const body = JSON.stringify({
+      nombre,
+      categoria,
+      precio,
+      stock,
+      Descripcion,
+      urlImg  
+    });
+  
+    const response = await fetch(`${Puerto.URL_LOCAL}/accesorio`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    body: body,
+    });
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error("Error status " + response.status)
+      throw new Error(`${errorData.message}`)
+    }
+    return response.json();
+  } catch (error) {
+    return error
+  }
 }
 
 //         Modificar un producto

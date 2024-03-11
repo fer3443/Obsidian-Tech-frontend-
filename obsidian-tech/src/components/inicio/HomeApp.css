@@ -1,6 +1,9 @@
 .section-intro {
   padding: 0 0.5rem;
 }
+.container-intro {
+  place-content: center;
+}
 .title-intro {
   margin-top: 1rem;
   font-weight: var(--font-bold);

@@ -1,25 +1,13 @@
 import React, { useState } from "react";
 import CatalogoCards from "./CatalogoCards";
 import "../catalogo/Catalogo.css";
+import { useHandleChange } from "../../hooks/useHandleChange";
 export const Catalogo = () => {
   const [initialValues, setInitialValues] = useState({
     precio: 0,
     categoria: "",
   });
-  const handleMinPrecio = (e) => {
-    const { name, value } = e.target;
-    setInitialValues({
-      ...initialValues,
-      [name]: value,
-    });
-  };
-  const handleCategory = (e) => {
-    const { name, value } = e.target;
-    setInitialValues({
-      ...initialValues,
-      [name]: value,
-    });
-  };
+  const {data, handleChange} = useHandleChange(initialValues)
 
   return (
     <>
@@ -30,7 +18,7 @@ export const Catalogo = () => {
         <div className="container-filters">
           <div className="filter-category">
             <label htmlFor="categoria">Categoria: </label>
-            <select name="categoria" id="categoria" onChange={handleCategory}>
+            <select name="categoria" id="categoria" onChange={handleChange}>
               <option value="all">Todas</option>
               <option value="Teclado">Teclado</option>
               <option value="Mouse">Mouse</option>
@@ -44,7 +32,7 @@ export const Catalogo = () => {
           <div className="filter-price">
            <div className="filter-box-label">
            <label htmlFor="precio">Precio: </label>
-            <span>$ {initialValues.precio}</span>
+            <span>$ {data.precio}</span>
            </div>
             <div className="filter-box-input">
               <span>$0 </span>
@@ -54,14 +42,14 @@ export const Catalogo = () => {
                 id="precio"
                 min={0}
                 max={170000}
-                onChange={handleMinPrecio}
+                onChange={handleChange}
               />
               <span>$170.000</span>
             </div>
           </div>
         </div>
         <div className="container-catalogo container grid">
-          <CatalogoCards initialValues={initialValues} />
+          <CatalogoCards initialValues={data} />
         </div>
       </section>
     </>
