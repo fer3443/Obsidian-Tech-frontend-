@@ -28,6 +28,7 @@ async function CreateUser({ email, password, urlFoto }) {
 
 //             Iniciar sesión
 async function Login({ email, password }) {
+ try {
   const body = JSON.stringify({
     email,
     password,
@@ -39,7 +40,15 @@ async function Login({ email, password }) {
     },
     body: body,
   });
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error en el servidor status ${response.status}`)
+    throw new Error(`${errorData.message}`)
+  }
   return await response.json();
+ } catch (error) {
+  throw error
+ }
 }
 
 //    Agregar un producto a la lista de favoritos
@@ -183,6 +192,7 @@ async function AddPurchaseOrder({
   nombre: { nombres, apellidos },
   direccion: { departamento, calle, numero, localidad, provincia },
 }) {
+ try {
   const body = JSON.stringify({
     userId,
     products,
@@ -207,7 +217,15 @@ async function AddPurchaseOrder({
     },
     body: body,
   });
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error status ${response.status}`)
+    throw new Error(`${errorData.message}`)
+  }
   return await response.json();
+ } catch (error) {
+  throw error
+ }
 }
 async function UpdatePedido({
   pedidoId,
