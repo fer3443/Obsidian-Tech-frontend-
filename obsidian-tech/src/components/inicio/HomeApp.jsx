@@ -25,7 +25,7 @@ export const HomeApp = () => {
                   Los Mejores Accesorios Para un
                   <span className="titleSpan">Jugador Profesional</span>
                 </h1>
-                <p>
+                <p className="paragraph">
                   Bienvenido a Obsidian Tech, tu destino definitivo para los
                   mejores accesorios de videojuegos. En Obsidian Tech, nos
                   apasiona proporcionarte una experiencia de juego excepcional y

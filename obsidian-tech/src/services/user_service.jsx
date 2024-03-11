@@ -224,7 +224,7 @@ async function AddPurchaseOrder({
   }
   return await response.json();
  } catch (error) {
-  throw error
+  return error
  }
 }
 async function UpdatePedido({

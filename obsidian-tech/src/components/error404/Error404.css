@@ -1,29 +1,18 @@
-.sectionError {
-  margin-top: 4.5rem;
-  height: 70vh;
-  width: 100%;
-  background-color: #111;
-}
-.containerErrorImg {
+.section-error {
   width: 100%;
   height: 100%;
-  background-image: url('../../../src/assets/error.gif');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
-@media screen and (min-width: 320px) {
-  .sectionError {
-    height: 40vh;
-  }
+.container-error {
+  place-items: center;
+  grid-template-columns: 1fr;
+  padding-inline: 1rem;
 }
-@media screen and (min-width: 375px){
-  .sectionError {
-    height: 55vh;
-  }
+.container-error img {
+  width: 420px;
+  object-fit: contain;
 }
-@media screen and (min-width: 1024px) {
-  .sectionError {
-    height: 70vh;
+@media screen and (max-width:425px) {
+  .container-error img {
+    width: 300px;
   }
 }

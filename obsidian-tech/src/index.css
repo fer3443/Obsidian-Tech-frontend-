@@ -56,6 +56,9 @@ a:hover {
   font-size: var(--small-fs);
   margin-bottom: 0.25rem;
 }
+.paragraph {
+  font-size: var(--normal-fs);
+}
 .btn1 {
   background: linear-gradient(to right, var(--color-prim), var(--color-sec));
   border: none;
