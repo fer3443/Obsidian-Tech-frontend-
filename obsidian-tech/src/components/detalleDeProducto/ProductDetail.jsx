@@ -22,7 +22,7 @@ const ProductDetail = () => {
     producto,
     setProducto,
   } = useContext(DataProvider);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   //custom para manejar addFavorites
   const handleAddFavorites = useHandleAddFavorite();
   //custom para manejar addCar
@@ -70,51 +70,19 @@ const ProductDetail = () => {
     }
   }, [producto]); //datacontext para ver si renderiza el producto al hacer click en containerResults
 
-  function obtenerId() {
-    const arrayId = [];
-    favorites.map((item) => {
-      arrayId.push(item._id);
-    });
-    return arrayId;
-  }
-  function compararProductos() {
-    //ver esta funcion que queda en desuso
-    const productoSinAgregar = id;
-    const productosAgregados = obtenerId();
-    return productosAgregados.includes(productoSinAgregar);
-  }
-
-  function handleCompare() {
-    if (islogged) {
-      if (compararProductos()) {
-        Notification({
-          message: "El producto ya se encuentra agregado",
-          type: "error",
-        });
-      } else {
-        handleAddFavorites(id);
-      }
-    } else {
-      Notification({
-        message: "Debes iniciar sesion para agregar favoritos",
-        type: "error",
-      });
-    }
-  }
   function addProduct() {
     handleAddCar(id);
   }
-  function handleBuy(){
-    if(!islogged){
+  function handleBuy() {
+    if (!islogged) {
       Notification({
         message: "Debes iniciar sesion para comprar el producto",
         type: "error",
       });
-    }else{
-      handleAddCar(id)
-      navigate('/compra')
+    } else {
+      handleAddCar(id);
+      navigate("/compra");
     }
-
   }
   return (
     <section className="section-product-detail section">
@@ -128,7 +96,7 @@ const ProductDetail = () => {
             <div className="category">{data.categoria}</div>
             <button
               onClick={() => {
-                handleCompare();
+                handleAddFavorites(id);
               }}
             >
               <FontAwesomeIcon

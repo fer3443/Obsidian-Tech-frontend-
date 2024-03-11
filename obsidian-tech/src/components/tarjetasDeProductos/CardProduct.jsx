@@ -29,7 +29,10 @@ export const CardProduct = () => {
   return (
     <>
       <article className="swiperContainer">
-        <h2>Best Product</h2>
+      <div className="title-card-product-container container">
+      <h2>Más Vendidos</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam deserunt suscipit adipisci magnam ea illo, nemo quaerat nihil accusantium corrupti.</p>
+      </div>
         {loading ? (
           <span className="loader-catalogo"></span>
         ) : (

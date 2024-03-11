@@ -28,9 +28,8 @@ export const useHandleAddFavorite = () => {
         });
       }
     } catch (err) {
-      console.log(err);
       Notification({
-        message: "No se pudo agregar el producto a favoritos",
+        message: `${err}`,
         type: "error",
       });
     }

@@ -44,19 +44,28 @@ async function Login({ email, password }) {
 
 //    Agregar un producto a la lista de favoritos
 async function AddFavoriteProduct({ userId, productId, token }) {
-  const body = JSON.stringify({
-    userId,
-    productId,
-  });
-  const response = await fetch(`${Puerto.URL_LOCAL}/user/favorites`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: body,
-  });
-  return await response.json();
+  try {
+    const body = JSON.stringify({
+      userId,
+      productId,
+    });
+    const response = await fetch(`${Puerto.URL_LOCAL}/user/favorites`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: body,
+    });
+    if(!response.ok){
+      const errorData = await response.json()
+      console.error(`Error en el servidor status ${response.status}`)
+      throw new Error(`${errorData.message}`)
+    }
+    return await response.json();
+  } catch (error) {
+    throw error
+  }
 }
 
 //          Mostrar lista de favoritos
