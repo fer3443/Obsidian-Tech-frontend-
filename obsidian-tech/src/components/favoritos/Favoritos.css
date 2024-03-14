@@ -51,8 +51,7 @@
     overflow-x: scroll;
 }
 .boxFav h3 {
-    text-align: center;
-    padding: 5px 0;
+   padding-block: 1rem 0;
 }
 .containerCardFav {
     display: flex;

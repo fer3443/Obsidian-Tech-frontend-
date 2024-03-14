@@ -12,30 +12,11 @@ import { CardFavorites } from "./CardFavorites";
 import { DataProvider } from "../../context/DataContext";
 
 import "../favoritos/Favoritos.css";
+import { useGetFavorites } from "../../hooks/useGetFavorites";
 
 const Favoritos = () => {
-  const [loading, setLoading] = useState(false);
-  const [fav, setFav] = useState([]);
-  const {
-    userInfo: { user },
-    producto,
-    setProducto,
-  } = useContext(DataProvider);
-
-  useEffect(() => {
-    setLoading(true);
-    GetFavoriteProduct({
-      id: user.id,
-      token: user.token,
-    })
-      .then(({ favorite_producs }) => {
-        setFav(favorite_producs);
-        setLoading(false);
-        setProducto(false);
-      })
-      .catch((err) => console.log(err))
-  }, [producto]);
-  const favoritos = fav.length > 0;
+  const { favorite, loading } = useGetFavorites()
+  
   return (
     <div>
       {loading ? (
@@ -44,7 +25,7 @@ const Favoritos = () => {
         <section className="section-favorite section">
           <div className="container-favorite grid">
             <div className="ventanaFav">
-              <div className="boxTitleFav">
+              <div className="boxTitleFav container">
                 <Link to={"/"} className="linkBack">
                   <FontAwesomeIcon icon={faArrowLeft} className="icon" />
                   Inicio
@@ -56,23 +37,16 @@ const Favoritos = () => {
                 </p>
               </div>
               <div className="boxFav">
-                <h3>Favoritos {fav.length}</h3>
-                <div className="containerCardFav">
-                  {fav.length == 0 ? (
+                <h3 className="section-title">Favoritos {favorite ? favorite.length : 0}</h3>
+                <div className="containerCardFav container">
+                  {favorite.length == 0 ? (
                     <div className="favEmpty">
                       <h2>No tienes productos agregados a favoritos!</h2>
                     </div>
                   ) : (
-                    <CardFavorites fav={fav} />
+                    <CardFavorites fav={favorite} />
                   )}
                 </div>
-                {favoritos.length > 0 && (
-                  <div className="buttonsFav">
-                    <Link to={"/"} className="buttonCartFav">
-                      seguir comprando
-                    </Link>
-                  </div>
-                )}
               </div>
             </div>
           </div>
