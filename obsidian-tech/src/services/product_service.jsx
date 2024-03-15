@@ -84,14 +84,24 @@ async function UpdateProducto(id, { nombre, categoria, precio, stock, Descripcio
 
 //          Borrar un producto
 async function DeleteProducto({ id, token }) {
-  const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'content-type': 'application/json',
-      authorization: `Bearer ${token}`,
-    },
-  });
-  return await response.json()
+  try {
+    const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+    });
+    if(!response.ok){
+      const errorData = await response.json();
+      console.error('Error status ' + response.status)
+      throw new Error(`${errorData.message}`)
+    }
+    return await response.json()
+  } catch (error) {
+    throw error
+  }
+
 }
 
 export { getAllProductsFromDB, getProductByIdFromDb, AddProductos, UpdateProducto, DeleteProducto }

@@ -1,29 +1,32 @@
 .section-footer {
+    padding: 2rem 0;
     height: 100%;
     width: 100%;
     background-color: #000;
-    padding-top: 1rem;
 }
 .containerFooter {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     height: 100%;
     color: #fff;
-    text-align: center;
-    padding: 1rem;
+}
+.about-description, .containerFooter ul {
+    font-size: var(--small-fs);
+    font-weight: var(--font-medium);
 }
 .containerFooter ul {
     padding: 0;
+}
+.social-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: .5rem;
+    column-gap: 1rem;
 }
 .linksFoot {
     display: flex;
-    align-items: center;
-    column-gap: 1rem;
+    border: 1px solid var(--color-text);
+    border-radius: 50%;
+    padding: .5rem;
+    font-size: var(--normal-fs);
     text-decoration: none;
     color: #fff;
 }
@@ -85,16 +88,21 @@
 }
 @media screen and (min-width: 768px){
     .containerFooter {
-        padding: 1rem 3rem;
+        grid-template-columns: repeat(2, 1fr);
     }
     .box-about-logo {
         align-items: center;
     }
 }
 @media screen and (min-width: 1024px) {
+    .section-footer {
+        height: 40vh;
+    }
     .containerFooter {
         grid-template-columns: repeat(3, 1fr);
-        padding: 0 2rem;
+    }
+    .containerContactos {
+        padding-inline: 2rem;
     }
     .about-logo {
         flex-direction: row;

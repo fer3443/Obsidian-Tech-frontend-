@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {Link} from 'react-router-dom'
 import Modal from "react-bootstrap/Modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { DeleteCarProduct, GetCarProducts } from "../../services/user_service";
+import { DeleteCarProduct } from "../../services/user_service";
 import { DataProvider } from "../../context/DataContext";
 import { Notification } from "../../services/tostifyNot";
 
@@ -15,7 +15,7 @@ export const BuyCar = () => {
   const [show, setShow] = useState(false);
   const { product } = useProductCar();
   //para manejar el estado del useEffect de getCarProduct
-  const { userInfo: {user, islogged} ,producto, setProducto} =  useContext(DataProvider)
+  const { userInfo: {user, islogged}, setProducto} =  useContext(DataProvider)
 
   
   const handleClose = () => setShow(false);
@@ -30,7 +30,13 @@ export const BuyCar = () => {
         setProducto(true)
         Notification({ message: 'Producto eliminado', type: 'success' });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Notification({
+          message: 'Error al eliminar producto',
+          type: 'error'
+        })
+        console.error(err)
+      });
   }
   
   return (
