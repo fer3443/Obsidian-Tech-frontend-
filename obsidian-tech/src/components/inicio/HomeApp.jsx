@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ProductGrid } from "../grillaDeProductos/ProductGrid";
 
 import Loader from "../loader/Loader";
-
+import teclado  from '../../assets/teclado-banner.webp'
 import "../inicio/HomeApp.css";
 export const HomeApp = () => {
   const [loading, setLoading] = useState(true);
@@ -41,6 +41,9 @@ export const HomeApp = () => {
                     Ver Catalogo
                   </Link>
                 </div>
+              </article>
+              <article>
+                <div className="container-banner"></div>
               </article>
             </div>
           </section>

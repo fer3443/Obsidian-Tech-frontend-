@@ -49,7 +49,7 @@ a:hover {
 }
 .section-title {
   font-size: var(--h1-fs);
-  color: #000;
+  color: var(--color-text);
   margin-bottom: 1.5rem;
 }
 .section-subtitle {
