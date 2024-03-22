@@ -62,7 +62,7 @@ async function AddFavoriteProduct({ userId, productId, token }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: body,
     });

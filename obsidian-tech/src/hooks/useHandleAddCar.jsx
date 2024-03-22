@@ -33,7 +33,7 @@ export const useHandleAddCar = () => {
     } catch (err) {
       console.log(err);
       Notification({
-        message: "No se pudo agregar el producto al carrito",
+        message: `No se pudo agregar el producto al carrito. ${err}`,
         type: "error",
       });
     }

@@ -4,7 +4,6 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import "../filtroNavegacion/FilterComponent.css";
 import { ContainerResults } from "../ventanadaResultados/ContainerResults";
-import { getAllProductsFromDB } from "../../services/product_service";
 import { useGetProducts } from "../../hooks/useGetProducts";
 
 const FilterComponent = ({ setClicked }) => {
