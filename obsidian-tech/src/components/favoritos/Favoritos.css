@@ -52,6 +52,7 @@
 }
 .boxFav h3 {
    padding-block: 1rem 0;
+   color: #000;
 }
 .containerCardFav {
     display: flex;

@@ -106,6 +106,7 @@ async function DeleteFavoriteById({ id, productId, token }) {
 
 // agregar un producto al carrito 
 async function AddCarProduct({userId, productId, token}){
+try {
   const body = JSON.stringify({
     userId,
     productId,
@@ -118,18 +119,36 @@ async function AddCarProduct({userId, productId, token}){
     },
     body: body,
   });
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error status ${response.status}`)
+    throw new Error(`${errorData.message}`)
+  }
   return await response.json();
+} catch (error) {
+  return error
+}
 }
 
 //Mostrar productos del carrito
 async function GetCarProducts({id, token}){
+try {
   const response = await fetch(`${Puerto.URL_LOCAL}/user/buyCar/${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${token}`,
     },
   });
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error status ${response.status}`)
+    throw new Error(errorData.msg_error)
+  }
   const results = await response.json()
   return results
+} catch (error) {
+  throw error
+}
 }
 
 //Borrar un producto del carrito 
@@ -141,7 +160,7 @@ async function DeleteCarProduct({id, productId, token}){
     method: 'PUT',
     headers: {
       'content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
     body: body,
   });
@@ -181,8 +200,17 @@ async function GetUserByEmail(email) {
 }
 //Trae la lista de pedidos
 async function GetAllPedidos(){
+ try {
   const response = await fetch(`${Puerto.URL_LOCAL}/user/pedido`);
+  if(!response.ok){
+    const errorData = await response.json()
+    console.error(`Error status ${response.status}`)
+    throw new Error(`${errorData.msg_error}`)
+  }
   return await response.json();
+ } catch (error) {
+  return error
+ }
 }
 //Agregar orden de compra
 async function AddPurchaseOrder({

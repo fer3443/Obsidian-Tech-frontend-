@@ -50,8 +50,8 @@ const ProductDetail = () => {
 
   useEffect(() => {
     getProductByIdFromDb(id)
-      .then(({producto}) => {
-        setData(producto);
+      .then(({prod}) => {
+        setData(prod);
       })
       .catch((error) => {
         Notification({

@@ -41,7 +41,7 @@ export const BuyCar = () => {
   
   return (
     <div className="containerModalCar">
-      <div className="circleCount">{product.length || "0"}</div>
+      <div className="circleCount">{(product.length !== 0 && product.length !== undefined) ? product.length : "0"}</div>
       <button onClick={handleShow} className="buttonCar">
         <FontAwesomeIcon icon={faCartShopping} />
       </button>
@@ -55,7 +55,7 @@ export const BuyCar = () => {
             <div>
               <p className="warningMessage">Debes iniciar sesion para agregar productos al carrito</p>
             </div>
-          ) : product.length == 0 ? (
+          ) : (product.length == 0 || product.length === undefined) ? (
             <div className="warningMessage">No hay productos agregados al carrito</div>
           ) : (
             product.map((item, index) => {

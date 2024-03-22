@@ -17,7 +17,11 @@ async function getAllProductsFromDB() {
 //         Muestra un producto por su id
 async function getProductByIdFromDb(id) {
   try {
-    const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`)
+    const response = await fetch(`${Puerto.URL_LOCAL}/accesorio/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
     if(!response.ok){
       const errorData = await response.json()
       console.error(`Error status ${response.status}`)
@@ -25,7 +29,7 @@ async function getProductByIdFromDb(id) {
     }
     return await response.json();
   } catch (error) {
-    return error
+    throw error
   }
 }
 
